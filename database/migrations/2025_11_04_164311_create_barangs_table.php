@@ -19,6 +19,9 @@ return new class extends Migration
             $table->date('expired_barang');
             $table->timestamp('created_at');
             $table->timestamp('updated_at') ->nullable();
+
+
+            $table->foreign('id_pengurus')->references('id_pengurus')->on('penguruses')->onDelete('cascade');
         });
     }
 
