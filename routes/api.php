@@ -30,5 +30,6 @@ Route::get('/barang-masuk', [BarangMasukController::class, 'index']);
 Route::post('/barang-masuk', [BarangMasukController::class, 'store']);
 Route::get('/barang-keluar/{id}', [BarangKeluarController::class, 'show']);
 Route::get('/barang-keluar', [BarangKeluarController::class, 'index']);
+
 // barang yang menipis
 Route :: get('/barang-menipis', [ManageController::class, 'menipis']);
