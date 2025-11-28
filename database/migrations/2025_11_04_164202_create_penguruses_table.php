@@ -16,7 +16,7 @@ return new class extends Migration
             $table->string('nama_pengurus', 50);
             $table->string('email_pengurus')->unique();
             $table->string('password_pengurus');
-            $table->timestamp("created_at");
+            $table->timestamps();
         });
     }
     /** 

@@ -12,18 +12,18 @@ class AuthController extends Controller
     // REGISTER
     public function register(Request $request)
     {
-        $validated = $request->validate([
+        $data = $request->validate([
             'nama_pengurus' => 'required',
-            'email' => 'required|email|unique:penguruses,email',
+            'email' => 'required|',
             'password' => 'required|min:6'
         ]);
-
+   
         $pengurus = Pengurus::create([
-            'nama_pengurus' => $validated['nama_pengurus'],
-            'email' => $validated['email'],
-            'password' => Hash::make($validated['password'])
+            'nama_pengurus' => $data['nama_pengurus'],
+            'email_pengurus' => $data['email'],
+            'password_pengurus' => Hash::make($data['password'])
         ]);
-
+     
         return response()->json([
             'status' => 201,
             'message' => 'Register berhasil',
@@ -39,9 +39,9 @@ class AuthController extends Controller
             'password' => 'required'
         ]);
 
-        $pengurus = Pengurus::where('email', $validated['email'])->first();
+        $pengurus = Pengurus::where('email_pengurus', $validated['email'])->first();
 
-        if (!$pengurus || !Hash::check($validated['password'], $pengurus->password)) {
+        if (!$pengurus || !Hash::check($validated['password'], $pengurus->password_pengurus)) {
             return response()->json([
                 'status' => 401,
                 'message' => 'Email atau Password salah'
